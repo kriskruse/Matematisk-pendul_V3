@@ -65,9 +65,11 @@ Partial Class Form1
         '
         'TimerExact
         '
+        Me.TimerExact.Interval = 1
         '
         'TimerEuler
         '
+        Me.TimerEuler.Interval = 1
         '
         'Label1
         '
