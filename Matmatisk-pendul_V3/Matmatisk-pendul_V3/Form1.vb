@@ -173,7 +173,6 @@
         AlphaE_n1 = -g / LsnorM * Math.Sin(ThetaE_n1)
 
         'Sætter n-værdier = n+1 værdierne
-
         OmegaE_n = OmegaE_n1
         ThetaE_n = ThetaE_n1
         AlphaE_n = AlphaE_n1
@@ -228,6 +227,7 @@
     Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         'Stop simuleringen
         TimerExact.Stop()
+        TimerEuler.Stop()
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
