@@ -21,9 +21,9 @@
     Const OmegaStart As Single = 0
     'Fysiske størrelser
     Const RLod As Single = 5   'cm
-    Const Lsnor As Single = 40 'cm
-    Const LsnorM As Single = Lsnor / 100 'm
-    Const g As Single = 9.82   'm/s2
+    Dim Lsnor As Single = 40 'cm
+    Dim LsnorM As Single = Lsnor / 100 'm
+    Dim g As Single = 9.82   'm/s2
     Const ThetaMax As Single = 0.5 'Radianer
     'Variable til timeren
     Dim Tid As Single = 0            'Den aktuelle tid
@@ -81,6 +81,8 @@
         DoubleBuffered = True  'Tegn i en buffer før det vises. Fjerner blink i Paint
 
         txtTidsInverval.Text = 30
+        txtSnorlængde.Text = 40
+        txtG.Text = 9.82
 
     End Sub
 
@@ -107,7 +109,7 @@
 
     'Beregner snorens vinkel for exact løsning
     Private Sub BeregnThetaExact()
-        ThetaX = ThetaMax * Math.Cos(Math.Sqrt(g / Lsnor) * Tid)
+        ThetaX = ThetaMax * Math.Cos(Math.Sqrt(g / LsnorM) * Tid)
     End Sub
 
     'Kaldes hver gang der er gået Delta_t sec og beregner positionerne for
@@ -145,6 +147,8 @@
         TimerEuler.Stop()
         'Indlæs værdierne fra tekstfelterne
         TidsInterval = txtTidsInverval.Text
+        Lsnor = txtSnorlængde.Text
+        g = txtG.Text
         'Sæt startværdierne
         StartExact()
         'Sæt timerens interval og start simuleringen
@@ -158,7 +162,7 @@
         Delta_t = txtTidsInverval.Text
         OmegaE_n = 0
         ThetaE_n = ThetaMax
-        AlphaE_n = -g / Lsnor * Math.Sin(ThetaMax)
+        AlphaE_n = -g / LsnorM * Math.Sin(ThetaMax)
     End Sub
 
     'Beregner snorens vinkel for Euler løsning
@@ -166,7 +170,7 @@
         'Beregner vinkel, vinkelhastighed og vinkelacceleration for n+1
         OmegaE_n1 = OmegaE_n + AlphaE_n * Delta_t
         ThetaE_n1 = ThetaE_n + OmegaE_n * Delta_t
-        AlphaE_n1 = -g / Lsnor * Math.Sin(ThetaE_n1)
+        AlphaE_n1 = -g / LsnorM * Math.Sin(ThetaE_n1)
 
         'Sætter n-værdier = n+1 værdierne
 
@@ -182,6 +186,8 @@
         TimerEuler.Stop()
         'Indlæs værdierne fra tekstfelterne
         TidsInterval = txtTidsInverval.Text
+        Lsnor = txtSnorlængde.Text
+        g = txtG.Text
         'Sæt startværdierne
         StartEuler()
         'Sæt timerens interval og start simuleringen
