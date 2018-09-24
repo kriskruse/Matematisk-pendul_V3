@@ -36,6 +36,8 @@ Partial Class Form1
         Me.txtSnorlængde = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtMaxVinkel = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TimerEulerC = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'btnStartExact
@@ -49,7 +51,7 @@ Partial Class Form1
         '
         'btnStop
         '
-        Me.btnStop.Location = New System.Drawing.Point(12, 86)
+        Me.btnStop.Location = New System.Drawing.Point(12, 123)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(92, 31)
         Me.btnStop.TabIndex = 1
@@ -76,7 +78,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 141)
+        Me.Label1.Location = New System.Drawing.Point(9, 227)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(128, 17)
         Me.Label1.TabIndex = 3
@@ -85,7 +87,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 205)
+        Me.Label2.Location = New System.Drawing.Point(9, 285)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(118, 17)
         Me.Label2.TabIndex = 4
@@ -94,7 +96,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 267)
+        Me.Label3.Location = New System.Drawing.Point(9, 339)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(192, 17)
         Me.Label3.TabIndex = 5
@@ -102,21 +104,21 @@ Partial Class Form1
         '
         'txtTidsInverval
         '
-        Me.txtTidsInverval.Location = New System.Drawing.Point(15, 162)
+        Me.txtTidsInverval.Location = New System.Drawing.Point(12, 247)
         Me.txtTidsInverval.Name = "txtTidsInverval"
         Me.txtTidsInverval.Size = New System.Drawing.Size(100, 22)
         Me.txtTidsInverval.TabIndex = 6
         '
         'txtG
         '
-        Me.txtG.Location = New System.Drawing.Point(12, 287)
+        Me.txtG.Location = New System.Drawing.Point(12, 359)
         Me.txtG.Name = "txtG"
         Me.txtG.Size = New System.Drawing.Size(100, 22)
         Me.txtG.TabIndex = 7
         '
         'txtSnorlængde
         '
-        Me.txtSnorlængde.Location = New System.Drawing.Point(12, 225)
+        Me.txtSnorlængde.Location = New System.Drawing.Point(12, 305)
         Me.txtSnorlængde.Name = "txtSnorlængde"
         Me.txtSnorlængde.Size = New System.Drawing.Size(100, 22)
         Me.txtSnorlængde.TabIndex = 8
@@ -124,7 +126,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 334)
+        Me.Label4.Location = New System.Drawing.Point(9, 396)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(108, 17)
         Me.Label4.TabIndex = 9
@@ -132,16 +134,26 @@ Partial Class Form1
         '
         'txtMaxVinkel
         '
-        Me.txtMaxVinkel.Location = New System.Drawing.Point(12, 354)
+        Me.txtMaxVinkel.Location = New System.Drawing.Point(12, 416)
         Me.txtMaxVinkel.Name = "txtMaxVinkel"
         Me.txtMaxVinkel.Size = New System.Drawing.Size(100, 22)
         Me.txtMaxVinkel.TabIndex = 10
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(12, 86)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(92, 31)
+        Me.Button1.TabIndex = 11
+        Me.Button1.Text = "Start EulerC"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.txtMaxVinkel)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtSnorlængde)
@@ -173,4 +185,6 @@ Partial Class Form1
     Friend WithEvents txtSnorlængde As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txtMaxVinkel As TextBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents TimerEulerC As Timer
 End Class
