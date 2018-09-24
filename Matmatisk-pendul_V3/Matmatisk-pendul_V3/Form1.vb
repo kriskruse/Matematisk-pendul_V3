@@ -24,7 +24,7 @@
     Dim Lsnor As Single = 40 'cm
     Dim LsnorM As Single = Lsnor / 100 'm
     Dim g As Single = 9.82   'm/s2
-    Const ThetaMax As Single = 0.5 'Radianer
+    Const ThetaMax As Single = 0.3 'Radianer
     'Variable til timeren
     Dim Tid As Single = 0            'Den aktuelle tid
     Dim TidsInterval As Integer = 20 'Tidsinterval for timertick i millisekunder
@@ -169,9 +169,11 @@
     Private Sub BeregnThetaEuler()
         'Beregner vinkel, vinkelhastighed og vinkelacceleration for n+1
         OmegaE_n1 = OmegaE_n + AlphaE_n * Delta_t
+        Console.WriteLine(OmegaE_n1)
         ThetaE_n1 = ThetaE_n + OmegaE_n * Delta_t
+        Console.WriteLine(ThetaE_n1)
         AlphaE_n1 = -g / LsnorM * Math.Sin(ThetaE_n1)
-
+        Console.WriteLine(AlphaE_n1)
         'Sætter n-værdier = n+1 værdierne
 
         OmegaE_n = OmegaE_n1
@@ -225,7 +227,7 @@
     End Sub
 
     'Knaptryk for stop af vilkårlig simulering
-    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+    Private Sub BtnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         'Stop simuleringen
         TimerExact.Stop()
     End Sub
