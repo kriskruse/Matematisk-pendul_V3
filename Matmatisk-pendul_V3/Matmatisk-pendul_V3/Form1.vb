@@ -192,8 +192,12 @@
     'snor og lod for dette tidspunkdt for Euler løsning
     Private Sub TimerEuler_Tick(sender As Object, e As EventArgs) Handles TimerEuler.Tick
         'Punkter til mellemregninger
-
+        Dim Pve As PointF 'Verdenskoordinat i kommatal
+        Dim Pvi As Point  'Vindueskoordinat i heltal
+        Tid += Delta_t 'Forøger den aktuelle tid med tidsinterval
         'Verdenskoordinaterne for enden af snoren
+        BeregnThetaEuler()
+        Pve.X = BeregnX(ThetaE_n)
 
         'Vindueskoordinaterne for enden af snoren
 
