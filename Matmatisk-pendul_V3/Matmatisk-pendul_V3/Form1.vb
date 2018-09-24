@@ -24,10 +24,10 @@
     Dim Lsnor As Single = 40 'cm
     Dim LsnorM As Single = Lsnor / 100 'm
     Dim g As Single = 9.82   'm/s2
-    Const ThetaMax As Single = 0.3 'Radianer
+    Dim ThetaMax As Single = 0.3 'Radianer
     'Variable til timeren
     Dim Tid As Single = 0            'Den aktuelle tid
-    Dim TidsInterval As Integer = 20 'Tidsinterval for timertick i millisekunder
+    Dim TidsInterval As Integer = 30 'Tidsinterval for timertick i millisekunder
     Dim Delta_t As Single = TidsInterval / 1000 'Delta tid i sekunder
 
     'Brug Paint på snor og lod med dette i stedet for shapes fra PowerPacks
@@ -80,9 +80,10 @@
         P_Graphics = Graphics.FromImage(P_image)
         DoubleBuffered = True  'Tegn i en buffer før det vises. Fjerner blink i Paint
 
-        txtTidsInverval.Text = 30
-        txtSnorlængde.Text = 40
-        txtG.Text = 9.82
+        txtTidsInverval.Text = TidsInterval
+        txtSnorlængde.Text = Lsnor
+        txtG.Text = g
+        txtMaxVinkel.Text = ThetaMax
 
     End Sub
 
@@ -163,6 +164,7 @@
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
         g = txtG.Text
+        ThetaMax = txtMaxVinkel.Text
         'Sæt startværdierne
         StartExact()
         'Sæt timerens interval og start simuleringen
@@ -186,7 +188,6 @@
         ThetaE_n1 = ThetaE_n + OmegaE_n * Delta_t
         AlphaE_n1 = -g / LsnorM * Math.Sin(ThetaE_n1)
         'Sætter n-værdier = n+1 værdierne
-
         OmegaE_n = OmegaE_n1
         ThetaE_n = ThetaE_n1
         AlphaE_n = AlphaE_n1
@@ -201,6 +202,7 @@
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
         g = txtG.Text
+        ThetaMax = txtMaxVinkel.Text
         'Sæt startværdierne
         StartEuler()
         'Sæt timerens interval og start simuleringen
@@ -242,6 +244,7 @@
     Private Sub BtnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         'Stop simuleringen
         TimerExact.Stop()
+        TimerEuler.Stop()
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint

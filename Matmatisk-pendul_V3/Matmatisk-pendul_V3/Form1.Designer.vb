@@ -34,6 +34,8 @@ Partial Class Form1
         Me.txtTidsInverval = New System.Windows.Forms.TextBox()
         Me.txtG = New System.Windows.Forms.TextBox()
         Me.txtSnorlængde = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtMaxVinkel = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnStartExact
@@ -119,11 +121,29 @@ Partial Class Form1
         Me.txtSnorlængde.Size = New System.Drawing.Size(100, 22)
         Me.txtSnorlængde.TabIndex = 8
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(9, 334)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(108, 17)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Max vinkel (rad)"
+        '
+        'txtMaxVinkel
+        '
+        Me.txtMaxVinkel.Location = New System.Drawing.Point(12, 354)
+        Me.txtMaxVinkel.Name = "txtMaxVinkel"
+        Me.txtMaxVinkel.Size = New System.Drawing.Size(100, 22)
+        Me.txtMaxVinkel.TabIndex = 10
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.txtMaxVinkel)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtSnorlængde)
         Me.Controls.Add(Me.txtG)
         Me.Controls.Add(Me.txtTidsInverval)
@@ -134,7 +154,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btnStop)
         Me.Controls.Add(Me.btnStartExact)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Matematisk pendul"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -151,4 +171,6 @@ Partial Class Form1
     Friend WithEvents txtTidsInverval As TextBox
     Friend WithEvents txtG As TextBox
     Friend WithEvents txtSnorlængde As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtMaxVinkel As TextBox
 End Class
