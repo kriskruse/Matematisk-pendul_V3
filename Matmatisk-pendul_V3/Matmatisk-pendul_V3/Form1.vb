@@ -241,9 +241,9 @@
     Private Sub StartEulerC()
         Tid = 0
         Delta_t = txtTidsInverval.Text / 1000
-        OmegaE_n = 0
-        ThetaE_n = ThetaMax
-        AlphaE_n = -g / LsnorM * Math.Sin(ThetaMax)
+        OmegaEC_n = 0
+        ThetaEC_n = ThetaMax
+        AlphaEC_n = -g / LsnorM * Math.Sin(ThetaMax)
     End Sub
 
     'Beregner snorens vinkel for Euler løsning
@@ -279,7 +279,7 @@
 
     'Kaldes hver gang der er gået Delta_t sec og beregner positionerne for
     'snor og lod for dette tidspunkdt for Euler løsning
-    Private Sub TimerEulerC_Tick(sender As Object, e As EventArgs) Handles TimerEuler.Tick
+    Private Sub TimerEulerC_Tick(sender As Object, e As EventArgs) Handles TimerEulerC.Tick
         'Punkter til mellemregninger
         Dim Pve As PointF 'Verdenskoordinat i kommatal
         Dim Pvi As Point  'Vindueskoordinat i heltal
