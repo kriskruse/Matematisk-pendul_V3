@@ -200,10 +200,21 @@
         'Verdenskoordinaterne for enden af snoren
         BeregnThetaEuler()
         Pve.X = BeregnX(ThetaE_n)
+        Pve.Y = BeregnY(ThetaE_n)
 
         'Vindueskoordinaterne for enden af snoren
+        Pvi.X = XVerdenToVin(Pve.X)
+        Pvi.Y = YVerdenToVin(Pve.Y)
+        'shpSnor.X2 = Pvi.X
+        'shpSnor.Y2 = Pvi.Y
+        SnorP2 = Pvi  'Bruges i Paint
 
         'Vindueskoordinaterne for loddet
+        Pvi.X = XVerdenToVin(Pve.X - RLod)
+        Pvi.Y = YVerdenToVin(Pve.Y + RLod)
+        'shpLod.Location = Pvi
+        LodP1 = Pvi   'Bruges i Paint
+        Me.Refresh()  'Sørger for at Paint kaldes
 
     End Sub
 
