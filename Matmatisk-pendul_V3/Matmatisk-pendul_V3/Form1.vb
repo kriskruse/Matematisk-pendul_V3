@@ -18,6 +18,15 @@
     Dim ThetaE_n1 As Single = 0
     Dim AlphaE_n1 As Single = 0
     Dim OmegaE_n1 As Single = 0
+    'variabler for Euler-Cromer
+    Dim ThetaEC_n As Single = 0
+    Dim AlphaEC_n As Single = 0
+    Dim OmegaEC_n As Single = 0
+    Dim ThetaEC_n1 As Single = 0
+    Dim AlphaEC_n1 As Single = 0
+    Dim OmegaEC_n1 As Single = 0
+
+
     Const OmegaStart As Single = 0
     'Fysiske størrelser
     Const RLod As Single = 5   'cm
@@ -185,6 +194,7 @@
         'Stop nuværende simulationer
         TimerExact.Stop()
         TimerEuler.Stop()
+        TimerEulerC.Stop()
         'Indlæs værdierne fra tekstfelterne
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
@@ -227,11 +237,82 @@
 
     End Sub
 
+    'Sætter startværdierne for simulering af Euler løsning
+    Private Sub StartEulerC()
+        Tid = 0
+        Delta_t = txtTidsInverval.Text / 1000
+        OmegaE_n = 0
+        ThetaE_n = ThetaMax
+        AlphaE_n = -g / LsnorM * Math.Sin(ThetaMax)
+    End Sub
+
+    'Beregner snorens vinkel for Euler løsning
+    Private Sub BeregnThetaEulerC()
+        'Beregner vinkel, vinkelhastighed og vinkelacceleration for n+1
+        OmegaEC_n1 = OmegaEC_n + AlphaEC_n * Delta_t
+        ThetaEC_n1 = ThetaEC_n + OmegaEC_n1 * Delta_t
+        AlphaEC_n1 = -g / LsnorM * Math.Sin(ThetaEC_n1)
+        'Sætter n-værdier = n+1 værdierne
+        OmegaEC_n = OmegaEC_n1
+        ThetaEC_n = ThetaEC_n1
+        AlphaEC_n = AlphaEC_n1
+    End Sub
+
+    'Beregner snorens vinkel for Euler løsning
+    Private Sub btnEulerC_Click(sender As Object, e As EventArgs) Handles btnEulerC.Click
+        'Stop nuværende simulationer
+        TimerExact.Stop()
+        TimerEuler.Stop()
+        TimerEulerC.Stop()
+        'Indlæs værdierne fra tekstfelterne
+        TidsInterval = txtTidsInverval.Text
+        Lsnor = txtSnorlængde.Text
+        g = txtG.Text
+        ThetaMax = txtMaxVinkel.Text
+        'Sæt startværdierne
+        StartEulerC()
+        'Sæt timerens interval og start simuleringen
+        TimerEulerC.Interval = TidsInterval
+        TimerEulerC.Start()
+
+    End Sub
+
+    'Kaldes hver gang der er gået Delta_t sec og beregner positionerne for
+    'snor og lod for dette tidspunkdt for Euler løsning
+    Private Sub TimerEulerC_Tick(sender As Object, e As EventArgs) Handles TimerEuler.Tick
+        'Punkter til mellemregninger
+        Dim Pve As PointF 'Verdenskoordinat i kommatal
+        Dim Pvi As Point  'Vindueskoordinat i heltal
+        Tid += Delta_t 'Forøger den aktuelle tid med tidsinterval
+
+        'Verdenskoordinaterne for enden af snoren
+        BeregnThetaEulerC()
+        Pve.X = BeregnX(ThetaEC_n)
+        Pve.Y = BeregnY(ThetaEC_n)
+        'Vindueskoordinaterne for enden af snoren
+        Pvi.X = XVerdenToVin(Pve.X)
+        Pvi.Y = YVerdenToVin(Pve.Y)
+        'shpSnor.X2 = Pvi.X
+        'shpSnor.Y2 = Pvi.Y
+        SnorP2 = Pvi  'Bruges i Paint
+
+        'Vindueskoordinaterne for loddet
+        Pvi.X = XVerdenToVin(Pve.X - RLod)
+        Pvi.Y = YVerdenToVin(Pve.Y + RLod)
+
+        'shpLod.Location = Pvi
+        LodP1 = Pvi   'Bruges i Paint
+        Me.Refresh()  'Sørger for at Paint kaldes
+
+    End Sub
+
+
     'Knaptryk for stop af vilkårlig simulering
     Private Sub BtnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         'Stop simuleringen
         TimerExact.Stop()
         TimerEuler.Stop()
+        TimerEulerC.Stop()
     End Sub
 
     Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
@@ -250,4 +331,5 @@
         MyPen.Width = 1
         P_Graphics.DrawEllipse(MyPen, LodP1.X, LodP1.Y, LodWidth, LodHeight)
     End Sub
+
 End Class

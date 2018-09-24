@@ -36,7 +36,7 @@ Partial Class Form1
         Me.txtSnorlængde = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtMaxVinkel = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnEulerC = New System.Windows.Forms.Button()
         Me.TimerEulerC = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
@@ -44,7 +44,7 @@ Partial Class Form1
         '
         Me.btnStartExact.Location = New System.Drawing.Point(12, 12)
         Me.btnStartExact.Name = "btnStartExact"
-        Me.btnStartExact.Size = New System.Drawing.Size(92, 31)
+        Me.btnStartExact.Size = New System.Drawing.Size(105, 31)
         Me.btnStartExact.TabIndex = 0
         Me.btnStartExact.Text = "Start Exact"
         Me.btnStartExact.UseVisualStyleBackColor = True
@@ -53,7 +53,7 @@ Partial Class Form1
         '
         Me.btnStop.Location = New System.Drawing.Point(12, 123)
         Me.btnStop.Name = "btnStop"
-        Me.btnStop.Size = New System.Drawing.Size(92, 31)
+        Me.btnStop.Size = New System.Drawing.Size(105, 31)
         Me.btnStop.TabIndex = 1
         Me.btnStop.Text = "Stop"
         Me.btnStop.UseVisualStyleBackColor = True
@@ -62,7 +62,7 @@ Partial Class Form1
         '
         Me.btnStartEuler.Location = New System.Drawing.Point(12, 49)
         Me.btnStartEuler.Name = "btnStartEuler"
-        Me.btnStartEuler.Size = New System.Drawing.Size(92, 31)
+        Me.btnStartEuler.Size = New System.Drawing.Size(105, 31)
         Me.btnStartEuler.TabIndex = 2
         Me.btnStartEuler.Text = "Start Euler"
         Me.btnStartEuler.UseVisualStyleBackColor = True
@@ -139,21 +139,25 @@ Partial Class Form1
         Me.txtMaxVinkel.Size = New System.Drawing.Size(100, 22)
         Me.txtMaxVinkel.TabIndex = 10
         '
-        'Button1
+        'btnEulerC
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 86)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(92, 31)
-        Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Start EulerC"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnEulerC.Location = New System.Drawing.Point(12, 86)
+        Me.btnEulerC.Name = "btnEulerC"
+        Me.btnEulerC.Size = New System.Drawing.Size(105, 31)
+        Me.btnEulerC.TabIndex = 11
+        Me.btnEulerC.Text = "Start EulerC"
+        Me.btnEulerC.UseVisualStyleBackColor = True
+        '
+        'TimerEulerC
+        '
+        Me.TimerEulerC.Interval = 1
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnEulerC)
         Me.Controls.Add(Me.txtMaxVinkel)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtSnorlængde)
@@ -185,6 +189,6 @@ Partial Class Form1
     Friend WithEvents txtSnorlængde As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txtMaxVinkel As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnEulerC As Button
     Friend WithEvents TimerEulerC As Timer
 End Class
