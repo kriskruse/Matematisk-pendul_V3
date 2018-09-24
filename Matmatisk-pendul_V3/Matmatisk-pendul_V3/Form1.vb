@@ -85,14 +85,14 @@
     'Beregner loddets X-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
     Private Function BeregnX(V As Single) As Single
         Dim X As Single = 0
-        'X = ?
+        X = Math.Sin(ThetaX) * Lsnor
         Return X
     End Function
 
     'Beregner loddets Y-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
     Private Function BeregnY(V As Single) As Single
         Dim Y As Single = 0
-        'Y = ?
+        Y = Math.Cos(ThetaX) * -Lsnor
         Return Y
     End Function
 
@@ -105,7 +105,7 @@
 
     'Beregner snorens vinkel for exact løsning
     Private Sub BeregnThetaExact()
-        'ThetaX = ?
+        ThetaX = ThetaMax * Math.Cos(Math.Sqrt(g / Lsnor) * Tid)
     End Sub
 
     'Kaldes hver gang der er gået Delta_t sec og beregner positionerne for
@@ -152,35 +152,39 @@
 
     'Sætter startværdierne for simulering af Euler løsning
     Private Sub StartEuler()
-        'Tid = ?
-        'Delta_t = ?
-        'OmegaE_n = ?
-        'ThetaE_n = ?
-        'AlphaE_n = ?
+        Tid = 0
+        Delta_t = txtTidsInverval.Text
+        OmegaE_n = 0
+        ThetaE_n = ThetaMax
+        AlphaE_n = -g / Lsnor * Math.Sin(ThetaMax)
     End Sub
 
     'Beregner snorens vinkel for Euler løsning
     Private Sub BeregnThetaEuler()
         'Beregner vinkel, vinkelhastighed og vinkelacceleration for n+1
-        'ud fra n-værdier
-        'OmegaE_n1 = ?
-        'ThetaE_n1 = ?
-        'AlphaE_n1 = ?
+        OmegaE_n1 = OmegaE_n + AlphaE_n * Delta_t
+        ThetaE_n1 = ThetaE_n + OmegaE_n * Delta_t
+        AlphaE_n1 = -g / Lsnor * Math.Sin(ThetaE_n1)
+
         'Sætter n-værdier = n+1 værdierne
-        'OmegaE_n = ?
-        'ThetaE_n = ?
-        'AlphaE_n = ?
+
+        OmegaE_n = OmegaE_n1
+        ThetaE_n = ThetaE_n1
+        AlphaE_n = AlphaE_n1
     End Sub
 
     'Beregner snorens vinkel for Euler løsning
     Private Sub btnStartEuler_Click(sender As Object, e As EventArgs) Handles btnStartEuler.Click
         'Stop nuværende simulationer
-
+        TimerExact.Stop()
+        TimerEuler.Stop()
         'Indlæs værdierne fra tekstfelterne
-
+        TidsInterval = txtTidsInverval.Text
         'Sæt startværdierne
-
+        StartEuler()
         'Sæt timerens interval og start simuleringen
+        TimerEuler.Interval = TidsInterval
+        TimerEuler.Start()
 
     End Sub
 
