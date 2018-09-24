@@ -154,7 +154,7 @@ Partial Class Form1
         Me.Controls.Add(Me.btnStop)
         Me.Controls.Add(Me.btnStartExact)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Matematisk pendul"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
