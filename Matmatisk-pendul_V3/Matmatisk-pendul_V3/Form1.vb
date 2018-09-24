@@ -80,6 +80,8 @@
         P_Graphics = Graphics.FromImage(P_image)
         DoubleBuffered = True  'Tegn i en buffer før det vises. Fjerner blink i Paint
 
+        txtTidsInverval.Text = 30
+
     End Sub
 
     'Beregner loddets X-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
@@ -130,7 +132,7 @@
 
         'Vindueskoordinaterne for loddet
         Pvi.X = XVerdenToVin(Pve.X - RLod)
-        Pvi.Y = YVerdenToVin(Pve.Y - RLod)
+        Pvi.Y = YVerdenToVin(Pve.Y + RLod)
         'shpLod.Location = Pvi
         LodP1 = Pvi   'Bruges i Paint
         Me.Refresh()  'Sørger for at Paint kaldes
