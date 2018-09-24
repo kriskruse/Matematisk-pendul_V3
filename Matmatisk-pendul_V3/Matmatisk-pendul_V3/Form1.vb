@@ -100,6 +100,20 @@
         Return Y
     End Function
 
+    'Beregner loddets X-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
+    Private Function BeregnE_X(V As Single) As Single
+        Dim X As Single = 0
+        X = Math.Sin(ThetaE_n) * Lsnor
+        Return X
+    End Function
+
+    'Beregner loddets Y-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
+    Private Function BeregnE_Y(V As Single) As Single
+        Dim Y As Single = 0
+        Y = Math.Cos(ThetaE_n) * -Lsnor
+        Return Y
+    End Function
+
     'Sætter startværdierne for simulering af exact løsning
     Private Sub StartExact()
         Tid = 0
@@ -169,11 +183,8 @@
     Private Sub BeregnThetaEuler()
         'Beregner vinkel, vinkelhastighed og vinkelacceleration for n+1
         OmegaE_n1 = OmegaE_n + AlphaE_n * Delta_t
-        Console.WriteLine(OmegaE_n1)
         ThetaE_n1 = ThetaE_n + OmegaE_n * Delta_t
-        Console.WriteLine(ThetaE_n1)
         AlphaE_n1 = -g / LsnorM * Math.Sin(ThetaE_n1)
-        Console.WriteLine(AlphaE_n1)
         'Sætter n-værdier = n+1 værdierne
 
         OmegaE_n = OmegaE_n1
@@ -205,11 +216,11 @@
         Dim Pve As PointF 'Verdenskoordinat i kommatal
         Dim Pvi As Point  'Vindueskoordinat i heltal
         Tid += Delta_t 'Forøger den aktuelle tid med tidsinterval
+
         'Verdenskoordinaterne for enden af snoren
         BeregnThetaEuler()
-        Pve.X = BeregnX(ThetaE_n)
-        Pve.Y = BeregnY(ThetaE_n)
-
+        Pve.X = BeregnE_X(ThetaE_n)
+        Pve.Y = BeregnE_Y(ThetaE_n)
         'Vindueskoordinaterne for enden af snoren
         Pvi.X = XVerdenToVin(Pve.X)
         Pvi.Y = YVerdenToVin(Pve.Y)
@@ -220,6 +231,7 @@
         'Vindueskoordinaterne for loddet
         Pvi.X = XVerdenToVin(Pve.X - RLod)
         Pvi.Y = YVerdenToVin(Pve.Y + RLod)
+
         'shpLod.Location = Pvi
         LodP1 = Pvi   'Bruges i Paint
         Me.Refresh()  'Sørger for at Paint kaldes
