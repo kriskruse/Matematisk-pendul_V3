@@ -331,5 +331,5 @@
         MyPen.Width = 1
         P_Graphics.DrawEllipse(MyPen, LodP1.X, LodP1.Y, LodWidth, LodHeight)
     End Sub
-
+    'hello
 End Class
