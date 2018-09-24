@@ -90,30 +90,17 @@
     'Beregner loddets X-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
     Private Function BeregnX(V As Single) As Single
         Dim X As Single = 0
-        X = Math.Sin(ThetaX) * Lsnor
+        X = Math.Sin(V) * Lsnor
         Return X
     End Function
 
     'Beregner loddets Y-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
     Private Function BeregnY(V As Single) As Single
         Dim Y As Single = 0
-        Y = Math.Cos(ThetaX) * -Lsnor
+        Y = Math.Cos(V) * -Lsnor
         Return Y
     End Function
 
-    'Beregner loddets X-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
-    Private Function BeregnE_X(V As Single) As Single
-        Dim X As Single = 0
-        X = Math.Sin(ThetaE_n) * Lsnor
-        Return X
-    End Function
-
-    'Beregner loddets Y-pos ud fra vinklen, når snorens startpunkt ligger i (0,0)
-    Private Function BeregnE_Y(V As Single) As Single
-        Dim Y As Single = 0
-        Y = Math.Cos(ThetaE_n) * -Lsnor
-        Return Y
-    End Function
 
     'Sætter startværdierne for simulering af exact løsning
     Private Sub StartExact()
@@ -175,7 +162,7 @@
     'Sætter startværdierne for simulering af Euler løsning
     Private Sub StartEuler()
         Tid = 0
-        Delta_t = txtTidsInverval.Text
+        Delta_t = txtTidsInverval.Text / 1000
         OmegaE_n = 0
         ThetaE_n = ThetaMax
         AlphaE_n = -g / LsnorM * Math.Sin(ThetaMax)
@@ -221,8 +208,8 @@
 
         'Verdenskoordinaterne for enden af snoren
         BeregnThetaEuler()
-        Pve.X = BeregnE_X(ThetaE_n)
-        Pve.Y = BeregnE_Y(ThetaE_n)
+        Pve.X = BeregnX(ThetaE_n)
+        Pve.Y = BeregnY(ThetaE_n)
         'Vindueskoordinaterne for enden af snoren
         Pvi.X = XVerdenToVin(Pve.X)
         Pvi.Y = YVerdenToVin(Pve.Y)
