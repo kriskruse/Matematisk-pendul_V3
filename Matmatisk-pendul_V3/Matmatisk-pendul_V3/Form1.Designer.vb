@@ -126,9 +126,9 @@ Partial Class Form1
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(9, 334)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(73, 17)
+        Me.Label4.Size = New System.Drawing.Size(108, 17)
         Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Max vinkel"
+        Me.Label4.Text = "Max vinkel (rad)"
         '
         'txtMaxVinkel
         '

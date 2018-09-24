@@ -150,6 +150,7 @@
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
         g = txtG.Text
+        ThetaMax = txtMaxVinkel.Text
         'Sæt startværdierne
         StartExact()
         'Sæt timerens interval og start simuleringen
@@ -190,6 +191,7 @@
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
         g = txtG.Text
+        ThetaMax = txtMaxVinkel.Text
         'Sæt startværdierne
         StartEuler()
         'Sæt timerens interval og start simuleringen
