@@ -156,6 +156,7 @@
         'Stop nuværende simulationer
         TimerExact.Stop()
         TimerEuler.Stop()
+        TimerEulerC.Stop()
         'Indlæs værdierne fra tekstfelterne
         TidsInterval = txtTidsInverval.Text
         Lsnor = txtSnorlængde.Text
